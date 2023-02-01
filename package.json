@@ -1,0 +1,22 @@
+{
+  "name": "employee-tracker-patrick-childers",
+  "version": "1.0.0",
+  "description": "employee tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Childy77/Employee-Tracker-Patrick-Childers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Childy77/Employee-Tracker-Patrick-Childers/issues"
+  },
+  "homepage": "https://github.com/Childy77/Employee-Tracker-Patrick-Childers#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
