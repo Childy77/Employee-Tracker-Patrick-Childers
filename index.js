@@ -11,13 +11,118 @@ const db = mysql2.createConnection(
         database: 'employee_tracker_patrick_db'
       },
       console.log(`Connected to the employee_tracker_patrick_db database.`)
-)
+) 
 
-function init() 
+const init = () => {
+inquirer
+.prompt([
+    {
+        type: "list",
+        message: "Please choose an option:",
+        name: "intialize",
+        choices: [
+            "View all departments",
+            "View all roles",
+            "View all employees",
+            "Add a department",
+            "View a role",
+            "View an employee",
+            "Update an employee role",
+            "I'm finished"
+        ]
+    }
+    // add .then
+]).then(answers => {
 
+})
 
+}
+// add function
+const viewDept = () => {
+    
+}
+// add function
+const viewrole = () => {
+
+}
+// add function
+const viewEmployee = () => {
+
+}
+
+const addDept = () => {
     inquirer
-    .prompt([])
+    .prompt([
+        {
+            type: "input",
+            message: "What department would you like to add?",
+            name:"addDept"
+        }
+
+    ])
+}
+const addRole = () => {
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "What role would you like to add?",
+            name:"title"
+        },
+        {
+            type: "input",
+            message: "What is the salary for this role?",
+            name:"salary"
+        },
+        {
+            type: "input",
+            message: "What department is this role assigned?",
+            name:"addDept",
+            // connect to departments
+            choices: 
+            
+
+        }
+
+        // add .then
+    ]).then(answers => {
+
+    })
+}
+
+
+const addEmployee = () => {
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "What is the first name of the employee would you like to add?",
+            name:"firstName"
+        },
+        {
+            type: "input",
+            message: "What is the last name of the employee would you like to add?",
+            name:"lastName"
+        },
+        {
+            type: "input",
+            message: "What is this employees role?",
+            name:"role"
+        },
+        {
+            type: "input",
+            message: "Who is the manager of thid employee?",
+            name: "manager"
+        }
+
+        // add .then
+    ]).then(answers => {
+
+    })
+}
+
+init();
+    
 
 
 
