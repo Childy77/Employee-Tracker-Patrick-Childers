@@ -19,4 +19,4 @@ INSERT INTO employee(first_name, last_name, role_id, manager_id)
             ("Julius", "Caeser", 3, 8),         
             ("George", "Gordon", 4, 9),         
             ("Kyle", "Williams", 5, 10),         
-            ("Steve", "Howard", 6, 10),         
+            ("Steve", "Howard", 6, 10);         
