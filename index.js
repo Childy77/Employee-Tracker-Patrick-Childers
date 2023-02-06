@@ -40,10 +40,29 @@ inquirer
     }
     // add .then
 ]).then(answers => {
-
-})
+//     switch (ans.initialize) {
+//         case "View all departments": viewDept();
+//             break;
+//         case "View all roles": viewRoles();
+//             break;
+//         case "View all employees": viewEmployees();
+//             break;
+//         case "Add a department": addDept();
+//             break;
+//         case "Add a role": addRole();
+//             break;
+//         case "Add an employee": addEmployee();
+//             break;
+//         case "Update an employee role": updateEmployee();
+//             break;
+//         case "I'm finished":
+//             console.log("Thank you very much!");
+//             process.exit();
+//     }
+}).catch(err => console.error(err));
 
 }
+
 // add function
 const viewDept = () => {
     db.query(`SELECT * FROM department`, (err, results) => {
@@ -91,6 +110,11 @@ const addDept = () => {
     })
 };
 const addRole = () => {
+    const deptChoice = () => db.promise().query(`SELECT * FROM department`)
+    .then((rows) => {
+        let arrNames = rows[0].map(obj => obj.name);
+    })
+
     inquirer
     .prompt([
         {
@@ -108,7 +132,7 @@ const addRole = () => {
             message: "What department is this role assigned?",
             name:"addDept",
             // connect to departments
-            choices: 
+            choices: deptChoice
             
 
         }
@@ -146,7 +170,18 @@ const addEmployee = () => {
 
         // add .then
     ]).then(answers => {
-
+        db.query(`INSERT INTO employee(first_name, last_name)
+        VALUES(?, ?)` [answers.firstName, answers.lastName], (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                db.query(`SELECT * FROM employee`, (err, results) => {
+                    err ? console.error(err) : console.tables(results);
+                    
+                    init();
+                })
+            }
+        })
     })
 }
 
