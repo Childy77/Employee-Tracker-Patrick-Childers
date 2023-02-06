@@ -1,6 +1,13 @@
 const inquirer = require("inquirer");
 const mysql2 = require("mysql2");
 
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+// middleware?
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 const db = mysql2.createConnection(
     {
         host: 'localhost',
@@ -39,15 +46,25 @@ inquirer
 }
 // add function
 const viewDept = () => {
-    
+    db.query(`SELECT * FROM department`, (err, results) => {
+        err ? console.error(err) : console.table(results);
+        init();
+    })
 }
 // add function
 const viewrole = () => {
-
+    db.query(`SELECT * FROM role`, (err, results) => {
+        err ? console.error(err) : console.table(results);
+        init();
+    })
+    
 }
 // add function
 const viewEmployee = () => {
-
+    db.query(`SELECT * FROM employee`, (err, results) => {
+        err ? console.error(err) : console.tables(results);
+        init();
+    })
 }
 
 const addDept = () => {
@@ -59,8 +76,20 @@ const addDept = () => {
             name:"addDept"
         }
 
-    ])
-}
+    ]).then(answers => {
+        db.query(`INSERT INTO department(name)
+        VALUES(?)`, answers.addDept, (err, results) => {
+            if (err) {
+                console.log(err)
+            } else {
+                db.query(`SELECT * FROM department`, (err, results) => {
+                    err ? console.error(err) : console.table(results);
+                    init();
+                })
+            }
+        })
+    })
+};
 const addRole = () => {
     inquirer
     .prompt([
