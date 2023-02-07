@@ -55,7 +55,7 @@ inquirer
             break;
         case "Update an employee role": updateEmployee();
             break;
-        case "I'm finished":
+        case "I'm finished": exitPrompt();
             console.log("Thank you very much!");
             process.exit();
     }
@@ -188,6 +188,51 @@ const addEmployee = () => {
             }
         })
     })
+}
+
+const updateEmployee = () => {
+    db.query(
+        `SELECT * FROM role`,
+        function (err, res) {
+            if (err) throw err;
+            const roles = res;
+            console.table(roles);
+
+            inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "Enter employee ID number",
+                    name: "role_id"
+                },
+                {
+                    type: "input",
+                    message: "choose new employee role",
+                    name: "roles"
+                }
+            ]).then(answers => {
+                db.query(`INSERT INTO employee(first_name, last_name)
+                VALUES(?, ?)`, [answers.firstName, answers.lastName], (err, results) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        db.query(`SELECT * FROM employee`, (err, results) => {
+                            err ? console.error(err) : console.table(results);
+
+                            init();
+                        } )
+                    }
+                })
+            })
+        }
+
+    )
+    
+    }
+   
+
+const exitPrompt = () => {
+console.log("Thank you very much!");
 }
 
 init();
