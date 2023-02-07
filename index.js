@@ -176,7 +176,7 @@ const addEmployee = () => {
         // add .then
     ]).then(answers => {
         db.query(`INSERT INTO employee(first_name, last_name)
-        VALUES(?, ?)` [answers.firstName, answers.lastName], (err, results) => {
+        VALUES(?, ?)`, [answers.firstName, answers.lastName], (err, results) => {
             if (err) {
                 console.log(err);
             } else {
