@@ -57,7 +57,7 @@ inquirer
             break;
         case "I'm finished": exitPrompt();
             console.log("Thank you very much!");
-            process.exit();
+            
     }
 }).catch(err => console.error(err));
 
@@ -211,8 +211,7 @@ const updateEmployee = () => {
                     name: "roles"
                 }
             ]).then(answers => {
-                db.query(`INSERT INTO employee(first_name, last_name)
-                VALUES(?, ?)`, [answers.firstName, answers.lastName], (err, results) => {
+                db.query(`UPDATE employee SET role_id = ? WHERE id = ?`, [answers.role_id, answers.roles], (err, results) => {
                     if (err) {
                         console.log(err);
                     } else {
