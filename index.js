@@ -13,10 +13,10 @@ const db = mysql2.createConnection(
     {
         host: 'localhost',
 
-        user: process.env.DB_USER,
+        user: "root",
     
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
+        password: "Smeghead@77",
+        database: "employee_tracker_patrick_db",
       },
       console.log(`Connected to the employee_tracker_patrick_db database.`)
 ) 
